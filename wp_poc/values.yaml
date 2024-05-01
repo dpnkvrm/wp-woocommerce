@@ -1,0 +1,20 @@
+### Blog/Site Info
+#wordpressUsername: admin
+#wordpressPassword: Admin@2211
+#wordpressEmail: deepank_verma+wpadmin@epam.com
+#wordpressFirstName: Deepank
+#wordpressLastName: Verma
+#wordpressBlogName: Test_POC
+#
+### Database Settings
+#externalDatabase:
+#  host: localhost
+#  user: wp_poc_db_user
+#  password: Admin@2211
+#  database: wp_poc
+#
+### Disabling MariaDB
+#mariadb:
+#  enabled: false
+wordpress: wp-poc
+wordpress_image: deepankverma/wp-woocommerce
