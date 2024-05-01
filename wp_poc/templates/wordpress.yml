@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wp-poc-pv-claim
+  labels:
+    app: wp_poc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.wordpress }}
+  labels:
+    app: wp-poc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wp-poc
+  template:
+    metadata:
+      labels:
+        app: wp-poc
+    spec:
+      containers:
+      - image: {{ .Values.wordpress_image }}
+        name: {{ .Values.wordpress }}
+        ports:
+          - containerPort: 80
+        volumeMounts:
+          - name: wordpress-persistent-storage
+            mountPath: /var/www/html
+      volumes:
+        - name: wordpress-persistent-storage
+          persistentVolumeClaim:
+            claimName: wp-poc-pv-claim

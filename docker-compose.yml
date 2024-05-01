@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  wp_db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wp_poc
+      MYSQL_USER: wp_poc_db_user
+      MYSQL_PASSWORD: Admin@2211
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db:/var/lib/mysql
+
+#  wp_app:
+#    build:
+#      context: .
+#    restart: always
+#    environment:
+#      DB_HOST: wp_db
+#      DB_USER: wp_poc_db_user
+#      DB_PASSWORD: Admin@2211
+#    ports:
+#      - 80:80
+##    volumes:
+##      - ./wp-data:/var/lib/mysql
